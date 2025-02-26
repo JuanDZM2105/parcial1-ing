@@ -16,16 +16,12 @@ class FlightForm(forms.ModelForm):
     class Meta:
         model = Flight
         fields = ['name', 'flight_type', 'price']
-        widgets = {
-            'flight_type': forms.Select(choices=Flight.flightTypes)
-        }
 
     def clean_price(self):
         price = self.cleaned_data.get('price')
         if price <= 0:
             raise forms.ValidationError('El precio debe ser mayor que cero.')
         return price
-    
 class FlightRegisterView(TemplateView):
     template_name = 'vuelos/register.html'
 
@@ -56,8 +52,8 @@ class FlightStatisticsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Flight Statistics"
-        context["total_national"] = Flight.objects.filter(flight_type="Nacional").count()
-        context["total_international"] = Flight.objects.filter(flight_type="Internacional").count()
-        context["avg_price_national"] = Flight.objects.filter(flight_type="Nacional").aggregate(Avg('price'))['price__avg'] or 0
+        context["title"] = "Estadisticas de vuelos"
+        context["total_national"] = Flight.objects.filter(flight_type="NTL").count()
+        context["total_international"] = Flight.objects.filter(flight_type="INTL").count()
+        context["avg_price_national"] = Flight.objects.filter(flight_type="NTL").aggregate(Avg('price'))['price__avg'] or 0
         return context

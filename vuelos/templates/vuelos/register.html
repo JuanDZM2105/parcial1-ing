@@ -11,13 +11,16 @@
         {% csrf_token %}
         <label for="id_name">Nombre del vuelo:</label>
         {{ form.name }}
-
+        <br>
+        <br>
         <label for="id_flight_type">Tipo de vuelo:</label>
         {{ form.flight_type }}
-
+        <br>
+        <br>
         <label for="id_price">Precio:</label>
         {{ form.price }}
-
+        <br>
+        <br>
         <button type="submit">Registrar</button>
     </form>
 
