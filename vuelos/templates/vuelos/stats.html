@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas de Vuelos</title>
+</head>
+<body>
+    <h1>Estadísticas de Vuelos</h1>
+
+    <p><strong>Vuelos Nacionales:</strong> {{ total_national }}</p>
+    <p><strong>Vuelos Internacionales:</strong> {{ total_international }}</p>
+    <p><strong>Precio promedio de vuelos nacionales:</strong> ${{ avg_price_national|floatformat:2 }}</p>
+
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

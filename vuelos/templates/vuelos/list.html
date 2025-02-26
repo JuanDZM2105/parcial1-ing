@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vuelos</title>
+    <style>
+        .national-price { color: blue; } /* Precio en azul para vuelos nacionales */
+        .international-name { font-weight: bold; } /* Nombre en negrita para vuelos internacionales */
+    </style>
+</head>
+<body>
+    <h1>Lista de Vuelos</h1>
+
+    {% if flights %}
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+            </tr>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight.id }}</td>
+                {% if flight.flight_type == 'INTL' %}
+                    <td class="card-text" style="font-weight: bold;">{{ flight.name }}</td>
+                {% else %}
+                    <td class="card-text">{{ flight.name }}</td>
+                {% endif %}
+                
+                <td>{{ flight.flight_type }}</td>
+
+                {% if flight.flight_type == 'NTL' %}
+                    <td class="card-text" style="color: blue;">{{ flight.price }}</td>
+                {% else %}
+                    <td class="card-text">{{ flight.price }}</td>
+                {% endif %}
+                
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay vuelos registrados.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>
